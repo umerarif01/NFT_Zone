@@ -52,7 +52,6 @@ export const NFT = ({
           height={450}
           className="lg:w-[500px]"
           priority
-          loading="eager"
         />
         <div className="p-4">
           <div className="flex flex-col md:flex-col lg:flex-row justify-between ">

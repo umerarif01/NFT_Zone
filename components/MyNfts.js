@@ -11,6 +11,10 @@ const MyNfts = () => {
     loadNFTs();
   }, [contract]);
 
+  function joinString(_string) {
+    return "https://nftstorage.link/ipfs/" + _string.slice(7, 80);
+  }
+
   const loadNFTs = async () => {
     if (!contract) return;
 
@@ -58,7 +62,7 @@ const MyNfts = () => {
                   id={nft.tokenId}
                   name={nft.name}
                   description={nft.description}
-                  image={nft.image}
+                  image={joinString(nft.image)}
                   price={nft.price}
                   seller={nft.seller}
                   show={false}
