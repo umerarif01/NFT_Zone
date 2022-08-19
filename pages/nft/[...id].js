@@ -16,7 +16,8 @@ const NFTPage = () => {
   const { name, id, img, desc, seller, price } = router.query;
 
   function joinString(_string) {
-    return "https://nftstorage.link/ipfs/" + _string.slice(7, 80);
+    if (!_string) return;
+    else "https://nftstorage.link/ipfs/" + _string.slice(7, 80);
   }
 
   function formatPrice(price) {
@@ -80,7 +81,7 @@ const NFTPage = () => {
 
             <div className="flex flex-col lg:w-1/2">
               <h2 className="text-2xl font-medium pb-1">Description:</h2>
-              <h1 className="text-xl font-normal p-5 border-2 rounded-md border-gray-300 truncate">
+              <h1 className="text-xl font-normal p-5 border-2 rounded-md border-gray-300">
                 {desc}
               </h1>
               <h1 className="text-2xl font-medium pt-1 pb-2 ">Owned by: </h1>
