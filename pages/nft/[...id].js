@@ -18,7 +18,7 @@ const NFTPage = () => {
 
   function joinString(_string) {
     if (!_string) return;
-    else "https://nftstorage.link/ipfs/" + _string.slice(7, 80);
+    else return "https://nftstorage.link/ipfs/" + _string.slice(7, 80);
   }
 
   function formatPrice(price) {
