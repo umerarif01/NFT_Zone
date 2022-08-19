@@ -62,6 +62,7 @@ const Explore = () => {
     const items = await Promise.all(
       data.map(async (i) => {
         const tokenUri = await contract.tokenURI(i.tokenId);
+        console.log(tokenUri);
         const res = await fetch(tokenUri);
         const meta = await res.json();
         let item = {

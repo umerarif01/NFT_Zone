@@ -49,13 +49,13 @@ export const NavBar = () => {
         />
       </div>
       {/* Middle */}
-      <div className="flex items-center border-2 rounded-full py-3 md:shadow-sm">
+      <div className="flex items-center  md:border-2 rounded-full py-3 md:shadow-sm">
         <input
           //   value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
           type="text"
           placeholder={"Search NFTs here"}
-          className="flex-grow pl-5 bg-transparent outline-none 
+          className="flex-grow pl-1 lg:pl-5 bg-transparent outline-none 
         text-sm text-gray-600 placeholder-gray-400"
         />
         <SearchIcon

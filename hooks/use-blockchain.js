@@ -10,7 +10,7 @@ function useBlockchain() {
   const [contract, setContract] = useState(null);
   const [network, setNetwork] = useState();
 
-  const ContractAddress = "0xBCF91381Dd29aCB1778F2eC63022f5f0ff88cB0B";
+  const ContractAddress = "0x6B769B3e27f369491820a6912663c09fEBcDff7B";
 
   async function load() {
     const p = new ethers.providers.Web3Provider(window.ethereum);

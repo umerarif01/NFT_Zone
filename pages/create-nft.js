@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { uploadMetaToIPFS } from "../utils/pinata";
-import { uploadImagetoIPFS } from "../utils/pinata";
+import { uploadDataToNFT } from "../utils/nftStorage";
 import { NavBar } from "../components/NavBar";
 import useBlockchain from "../hooks/use-blockchain";
 import Head from "next/head";
@@ -26,35 +25,14 @@ const CreateNFT = () => {
 
   const { name, description, price } = formInput;
 
-  async function uploadToPinata() {
-    const img = await uploadImagetoIPFS(fileImg);
-    if (!img) return;
-    const data = JSON.stringify({
-      name,
-      description,
-      image: img,
-    });
-    const config = {
-      method: "post",
-      url: "https://api.pinata.cloud/pinning/pinJSONToIPFS",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${JWT}`,
-      },
-      data: data,
-    };
-    const nftUrl = await uploadMetaToIPFS(name, description, config);
-    console.log(nftUrl);
-    return nftUrl;
-  }
-
   async function createNFT() {
     if (!signer) {
       toast.error("Connect Wallet");
       return;
     }
     setState("Creating NFT - Please Wait");
-    const tokenURI = await uploadToPinata();
+    const tokenURI = await uploadDataToNFT(name, description, fileImg);
+    console.log(tokenURI);
     toast.success("Metadata Uploaded to IPFS");
     if (!price && !tokenURI) {
       toast.error("Please check NFT's inputs");

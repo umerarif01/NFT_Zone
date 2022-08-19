@@ -16,7 +16,11 @@ export const NFT = ({
   resell,
 }) => {
   const { address } = useBlockchain();
-  const router = useRouter();
+
+  function joinString(_string) {
+    return "https://nftstorage.link/ipfs/" + _string.slice(7, 80);
+  }
+
   function truncate(_string) {
     let addr = "@" + _string.slice(0, 7) + "...";
     return addr;
@@ -42,29 +46,45 @@ export const NFT = ({
         className="border shadow-lg rounded-xl overflow-hidden hover:scale-105
     transition transform duration-200 ease-out cursor-pointer"
       >
-        <img src={image} className="w-[550px] h-[200px] lg:w-[500px] " />
+        <Image
+          src={joinString(image)}
+          width={550}
+          height={450}
+          className="lg:w-[500px]"
+          priority
+          loading="eager"
+        />
         <div className="p-4">
           <div className="flex flex-col md:flex-col lg:flex-row justify-between ">
-            <p style={{ height: "50px" }} className="text-2xl font-semibold">
+            <p
+              style={{ height: "40px" }}
+              className=" text-2xl lg:text-2xl font-semibold"
+            >
               {name}
             </p>
             {seller == "0x0000000000000000000000000000000000000000" ? (
               <>
                 {" "}
-                <p className=" text-md font-semibold">@Owned by you</p>
+                <p className="text-lg lg:text-2xl font-semibold">
+                  @Owned by you
+                </p>
               </>
             ) : (
               <>
-                <p className="text-xl font-semibold">{truncate(seller)}</p>
+                <p className="text-md lg:text-xl font-semibold">
+                  {truncate(seller)}
+                </p>
               </>
             )}
           </div>
-          <div style={{ height: "40px", overflow: "hidden" }}>
-            <p className="pt-4 text-gray-500">{truncateString(description)}</p>
+          <div style={{ height: "25px" }}>
+            <p className="text-sm lg:text-lg pt-2 mt-[15px] text-gray-500 font-medium">
+              {truncateString(description)}
+            </p>
           </div>
         </div>
         <div className="p-3 ">
-          <p className="text-2xl pl-1 font-bold text-black">
+          <p className="text-lg lg:text-2xl pl-1 font-bold text-black">
             {formatPrice(price)} ETH
           </p>
 
